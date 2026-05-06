@@ -920,16 +920,12 @@ section { position: relative; }
   object-fit: cover;
 }
 .hero-video-label {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(3,7,16,0.9), transparent);
-  padding: 1.5rem 1rem 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.25em;
-  color: var(--text-muted);
+  color: var(--text-dim);
   text-transform: uppercase;
-  z-index: 2;
+  padding: 0.6rem 0.25rem 0;
 }
 
 @media (max-width: 960px) {
