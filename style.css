@@ -392,10 +392,9 @@ section { position: relative; }
   width: 100%;
   aspect-ratio: 2/3;
   object-fit: cover;
+  object-position: center top;
   background: var(--bg-card-alt);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 .book-cover-placeholder {
   width: 100%;
@@ -936,8 +935,35 @@ section { position: relative; }
   .hero-right { order: -1; max-width: 560px; margin: 0 auto; width: 100%; }
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
+/* ── Responsive Grid Utilities ────────────────────────────── */
+/* Used instead of inline style="display:grid;grid-template-columns:1fr 1fr" */
+.split-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.split-two-lg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ── Tablet (max 960px) ───────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero-two-col {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-right { order: -1; max-width: 560px; margin: 0 auto; width: 100%; }
+
+  .split-two-lg { gap: 2.5rem; }
+}
+
+/* ── Mobile (max 768px) ───────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Nav */
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
@@ -949,14 +975,105 @@ section { position: relative; }
     padding: 1.5rem 2rem 2rem;
     border-bottom: 1px solid var(--border);
     gap: 1.25rem;
+    z-index: 99;
   }
   .nav-toggle { display: flex; }
 
-  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  /* Section spacing */
+  .section-pad    { padding: 3.5rem 0; }
+  .section-pad-sm { padding: 2rem 0; }
+  .cta-band       { padding: 3.5rem 0; }
 
-  .omnibus-banner { flex-direction: column; }
+  /* Hero */
+  .hero        { min-height: auto; }
+  .hero-inner  { padding-top: 3rem; padding-bottom: 3rem; }
+  .hero-title  { font-size: clamp(1.9rem, 8vw, 3rem); }
+  .hero-cta    { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn { justify-content: center; text-align: center; }
+
+  /* Two-column grids → single column */
+  .split-two,
+  .split-two-lg { grid-template-columns: 1fr; gap: 2rem; }
+
+  /* Books */
+  .books-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+  /* Feature grid */
+  .feature-grid { grid-template-columns: 1fr; }
+
+  /* Timeline */
+  .timeline::before { left: 10px; }
+  .timeline-item    { padding-left: 2.25rem; gap: 1rem; flex-wrap: wrap; }
+  .timeline-dot     { left: 2px; }
+  .timeline-cover   { width: 80px; }
+
+  /* Stats — 2 × 2 on mobile */
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-block { padding: 1.5rem 1rem; }
+  .stat-num   { font-size: 2rem; }
+
+  /* Terminal — horizontal scroll instead of overflow */
+  .terminal { overflow-x: auto; font-size: 0.78rem; padding: 1.25rem; }
+
+  /* Omnibus */
+  .omnibus-banner  { flex-direction: column; gap: 1.5rem; }
   .omnibus-actions { margin-left: 0; }
 
-  .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+  /* Footer */
+  .footer-grid   { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* Recommended reading — 2-col on mobile */
+  .rec-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Section headers */
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .section-lead  { font-size: 0.95rem; }
+
+  /* Pull quote */
+  .pull-quote { font-size: 1rem; padding-left: 1rem; }
+
+  /* Page header */
+  .page-header { padding-top: calc(var(--nav-h) + 2.5rem); padding-bottom: 2.5rem; }
+
+  /* CTA band buttons */
+  .cta-band .btn { display: inline-flex; }
+}
+
+/* ── Small phones (max 480px) ─────────────────────────────── */
+@media (max-width: 480px) {
+  :root { --nav-h: 64px; }
+
+  .container { padding: 0 1.25rem; }
+
+  /* Books — single column on very small screens */
+  .books-grid { grid-template-columns: 1fr; }
+
+  /* Rec grid — single column */
+  .rec-grid { grid-template-columns: 1fr; }
+
+  /* Stats — keep 2-col but smaller */
+  .stat-num { font-size: 1.75rem; }
+
+  /* Timeline — hide cover to save space */
+  .timeline-cover { display: none; }
+  .timeline-item  { padding-left: 2rem; }
+
+  /* Omnibus image */
+  .omnibus-banner img { width: 100px; }
+
+  /* Form group stacked */
+  .form-group { flex-direction: column; align-items: stretch; }
+  .form-input { max-width: 100%; }
+
+  /* Hero eyebrow */
+  .hero-eyebrow { font-size: 0.65rem; }
+  .hero-tagline { font-size: 0.95rem; }
+  .hero-sub     { font-size: 0.9rem; }
+
+  /* Buttons full-width in some contexts */
+  .omnibus-actions .btn { width: 100%; justify-content: center; }
+
+  /* Theme bars — already single col via split-two, but gap */
+  .theme-bar-body { padding: 1rem; }
 }
