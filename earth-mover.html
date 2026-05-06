@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth Mover — The Concept | Planetary Science Fiction</title>
+  <meta name="description" content="The Earth Mover — a planetary-scale concept where humanity transforms Earth itself into a spacecraft. Explore the world-building behind the series." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .concept-grid { grid-template-columns: 1fr; }
+    }
+
+    .theme-bar {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .theme-bar-accent {
+      width: 4px;
+      flex-shrink: 0;
+      background: var(--cyan);
+    }
+    .theme-bar-accent.gold { background: var(--gold); }
+    .theme-bar-body {
+      padding: 1.25rem 1.5rem;
+      flex: 1;
+      background: var(--bg-card);
+    }
+    .theme-bar-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .theme-bar-text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .planet-diagram {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .planet-orb {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%,
+        #1a4a8a 0%,
+        #0d2a50 40%,
+        #051020 80%,
+        #020810 100%);
+      box-shadow:
+        0 0 60px rgba(74,158,255,0.25),
+        0 0 120px rgba(74,158,255,0.1),
+        inset 0 0 40px rgba(0,229,255,0.08);
+      margin: 0 auto 2rem;
+      animation: planet-pulse 4s ease-in-out infinite;
+      position: relative;
+    }
+    .planet-orb::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 20%;
+      width: 40%;
+      height: 35%;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    @keyframes planet-pulse {
+      0%, 100% { box-shadow: 0 0 60px rgba(74,158,255,0.25), 0 0 120px rgba(74,158,255,0.1), inset 0 0 40px rgba(0,229,255,0.08); }
+      50%       { box-shadow: 0 0 80px rgba(74,158,255,0.4),  0 0 160px rgba(74,158,255,0.15), inset 0 0 50px rgba(0,229,255,0.12); }
+    }
+    .planet-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .planet-status {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .planet-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .specs-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .specs-table tr:last-child { border-bottom: none; }
+    .specs-table td {
+      padding: 0.875rem 0.5rem;
+      font-size: 0.875rem;
+      vertical-align: top;
+    }
+    .specs-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      width: 45%;
+    }
+    .specs-table td:last-child { color: var(--text); }
+    .specs-table td.highlight { color: var(--gold); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<div class="page-wrap">
+
+  <!-- ── Navigation ── -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      Planetary Science Fiction
+      <span>Earth Mover Universe</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="earth-mover.html">Earth Mover</a></li>
+      <li><a href="start-here.html">Start Here</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="hero grid-overlay" style="min-height:70vh;">
+    <div class="container hero-inner" style="padding-top:4rem; padding-bottom:4rem;">
+      <p class="hero-eyebrow">The Central Concept</p>
+      <h1 class="hero-title" style="font-size:clamp(2rem,5.5vw,4.5rem);">
+        The <span class="highlight">Earth Mover</span>
+      </h1>
+      <p class="hero-tagline">Worlds become the stage, the stakes, and the spacecraft.</p>
+      <p class="hero-sub">
+        The Earth Mover is the premise, the technology, the event, and the series.
+        It is humanity's answer to an impossible problem — and the source of
+        every consequence that follows.
+      </p>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- ── Core Concept ── -->
+  <section class="section-pad grid-overlay">
+    <div class="container">
+      <div class="concept-grid">
+
+        <div>
+          <div class="section-header" style="margin-bottom:2rem;">
+            <p class="section-label">The Premise</p>
+            <h2 class="section-title">What Is the <span>Earth Mover?</span></h2>
+          </div>
+
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.85; margin-bottom:1.25rem;">
+            The Earth Mover is both a concept and a story. At its core: humanity
+            faces a crisis that cannot be solved by leaving. Instead, a solution is
+            devised — and executed — to move the entire planet.
+          </p>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.85; margin-bottom:1.25rem;">
+            Not a generation ship. Not a colony fleet. The planet itself, carrying
+            every mountain, every ocean, every monument, every living person —
+            set in motion through deep space.
+          </p>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.85; margin-bottom:2rem;">
+            The consequences of this decision — technological, political, spiritual,
+            and human — form the architecture of the entire series.
+          </p>
+
+          <div class="pull-quote">
+            "Humanity carried its whole history,<br>its beauty, its conflict,<br>into the deep."
+          </div>
+        </div>
+
+        <div>
+          <div class="planet-diagram">
+            <div class="planet-orb"></div>
+            <div class="planet-label">Object: Earth</div>
+            <div class="planet-status">IN TRANSIT</div>
+            <div class="planet-sub">Estimated arrival: Unknown</div>
+            <div style="margin-top:2rem;">
+              <table class="specs-table">
+                <tr>
+                  <td>Classification</td>
+                  <td class="highlight">Planetary Vessel</td>
+                </tr>
+                <tr>
+                  <td>Propulsion</td>
+                  <td>Earth Mover System</td>
+                </tr>
+                <tr>
+                  <td>Crew</td>
+                  <td>All of Humanity</td>
+                </tr>
+                <tr>
+                  <td>Cargo</td>
+                  <td>All of Human History</td>
+                </tr>
+                <tr>
+                  <td>Destination</td>
+                  <td class="highlight">Unknown</td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td class="highlight">Moving</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Themes ── -->
+  <section class="section-pad bg-deep">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">What the Series Explores</p>
+        <h2 class="section-title">Themes of the <span>Universe</span></h2>
+        <p class="section-lead">The Earth Mover Universe does not simply ask "how?" — it asks what follows, and who we become.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+
+        <div class="theme-bar">
+          <div class="theme-bar-accent"></div>
+          <div class="theme-bar-body">
+            <div class="theme-bar-title">Endurance</div>
+            <p class="theme-bar-text">What does civilization look like under indefinite displacement? How do institutions, cultures, and individuals sustain meaning when everything familiar is in motion?</p>
+          </div>
+        </div>
+
+        <div class="theme-bar">
+          <div class="theme-bar-accent gold"></div>
+          <div class="theme-bar-body">
+            <div class="theme-bar-title">Power &amp; Consequence</div>
+            <p class="theme-bar-text">Who controls the Earth Mover controls the future of every human being. The series examines the politics of planetary-scale authority — and the corruption it invites.</p>
+          </div>
+        </div>
+
+        <div class="theme-bar">
+          <div class="theme-bar-accent"></div>
+          <div class="theme-bar-body">
+            <div class="theme-bar-title">Wonder</div>
+            <p class="theme-bar-text">Even in crisis, humanity encounters what no civilization has ever seen: alien systems, deep space phenomena, and the profound strangeness of a universe indifferent to our journey.</p>
+          </div>
+        </div>
+
+        <div class="theme-bar">
+          <div class="theme-bar-accent gold"></div>
+          <div class="theme-bar-body">
+            <div class="theme-bar-title">Science &amp; Belief</div>
+            <p class="theme-bar-text">Moving a planet is an act of engineering — but it is also an act of faith. The series refuses to separate the technical from the theological, treating both as essential to survival.</p>
+          </div>
+        </div>
+
+        <div class="theme-bar">
+          <div class="theme-bar-accent"></div>
+          <div class="theme-bar-body">
+            <div class="theme-bar-title">Identity in Motion</div>
+            <p class="theme-bar-text">When your homeland is always moving, who are you? The series asks what culture, nationality, religion, and personhood mean when the ground beneath you is perpetually displaced.</p>
+          </div>
+        </div>
+
+        <div class="theme-bar">
+          <div class="theme-bar-accent gold"></div>
+          <div class="theme-bar-body">
+            <div class="theme-bar-title">Visionaries vs. Opportunists</div>
+            <p class="theme-bar-text">Every crisis creates heroes and exploiters. The Earth Mover Universe tracks both — those who move humanity forward and those who use the chaos to accumulate power.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── World-Building ── -->
+  <section class="section-pad grid-overlay">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">The Universe</p>
+        <h2 class="section-title">A <span>Planetary Vision</span></h2>
+        <p class="section-lead">The Earth Mover Universe is not just a setting — it is a framework for understanding what civilization means at the largest possible scale.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem; margin-bottom:3rem;">
+
+        <div class="card card-gold">
+          <div style="margin-bottom:1rem;">
+            <span style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.3em; color:var(--gold); text-transform:uppercase;">World Scale</span>
+          </div>
+          <p style="font-family:var(--font-display); font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.75rem; line-height:1.3;">Civilizations Measured World by World</p>
+          <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">In the Earth Mover Universe, power is not measured in armies or economies — it is measured in worlds. The ability to move a planet is the ultimate form of civilizational achievement.</p>
+        </div>
+
+        <div class="card">
+          <div style="margin-bottom:1rem;">
+            <span style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.3em; color:var(--cyan); text-transform:uppercase;">Deep Time</span>
+          </div>
+          <p style="font-family:var(--font-display); font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.75rem; line-height:1.3;">Humanity Carries Its Entire History</p>
+          <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">Every war, every monument, every lost language and forgotten culture — all of it travels with Earth. The past is not left behind. It is cargo, and it is heavy.</p>
+        </div>
+
+        <div class="card">
+          <div style="margin-bottom:1rem;">
+            <span style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.3em; color:var(--cyan); text-transform:uppercase;">Governance</span>
+          </div>
+          <p style="font-family:var(--font-display); font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.75rem; line-height:1.3;">Institutions Under Planetary Pressure</p>
+          <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">Government, law, democracy, religion — none of these systems were designed for a civilization in permanent transit. They fracture, adapt, fail, and reform in ways no one anticipated.</p>
+        </div>
+
+      </div>
+
+      <div class="terminal">
+        <div><span class="prompt">// EARTH MOVER UNIVERSE — WORLD PARAMETERS</span></div>
+        <div>&nbsp;</div>
+        <div><span class="prompt">setting &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">Deep space. Multi-planet scope.</span></div>
+        <div><span class="prompt">time_scale &nbsp;&nbsp;</span> <span class="value">Generational — decades of transit</span></div>
+        <div><span class="prompt">tech_level &nbsp;&nbsp;</span> <span class="value">Near-future speculative engineering</span></div>
+        <div><span class="prompt">politics &nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">Fractured world governments under strain</span></div>
+        <div><span class="prompt">conflict &nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">Internal: power, survival, belief</span></div>
+        <div><span class="prompt">external &nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">Other civilizations. Other moved worlds.</span></div>
+        <div>&nbsp;</div>
+        <div><span class="prompt">// THE FUNDAMENTAL QUESTION</span></div>
+        <div><span class="gold">query: "What are we, when the ground beneath us is always moving?"</span></div>
+        <div><span class="prompt">answer: </span><span class="value">See Books 1–4.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── The Books ── -->
+  <section class="section-pad bg-deep">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Explore the Narrative</p>
+        <h2 class="section-title">The <span>Four Books</span></h2>
+        <p class="section-lead">Each novel expands what the Earth Mover concept means — technically, politically, humanly.</p>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card">
+          <img class="book-cover" src="images/One%20man%20one%20world%20no%20way%20back.jpg" alt="Earth Mover Book One cover" loading="lazy" />
+          <div class="book-body">
+            <div class="book-series-tag">Book One</div>
+            <div class="book-title">Earth Mover</div>
+            <div class="book-tagline">"One man. One world. No way back."</div>
+            <div class="book-footer">
+              <a href="https://payhip.com/b/yGq3l" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;">Purchase</a>
+            </div>
+          </div>
+        </div>
+        <div class="book-card">
+          <img class="book-cover" src="images/Earth%20Mover%20two%20%2C%20the%20journey.jpg" alt="Earth Mover Two Book Two cover" loading="lazy" />
+          <div class="book-body">
+            <div class="book-series-tag">Book Two</div>
+            <div class="book-title">Earth Mover Two</div>
+            <div class="book-tagline">"The consequences unfold."</div>
+            <div class="book-footer">
+              <a href="https://payhip.com/b/RcF9J" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;">Purchase</a>
+            </div>
+          </div>
+        </div>
+        <div class="book-card">
+          <img class="book-cover" src="images/Earth%20Mover%20universe.jpg" alt="Earth Mover Universe Book Three cover" loading="lazy" />
+          <div class="book-body">
+            <div class="book-series-tag">Book Three</div>
+            <div class="book-title">Earth Mover Universe</div>
+            <div class="book-tagline">"Civilizations, world by world."</div>
+            <div class="book-footer">
+              <a href="https://payhip.com/b/ObDFE" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;">Purchase</a>
+            </div>
+          </div>
+        </div>
+        <div class="book-card">
+          <img class="book-cover" src="images/Good%20earth.jpg" alt="The Good Earth Book Four cover" loading="lazy" />
+          <div class="book-body">
+            <div class="book-series-tag">Book Four</div>
+            <div class="book-title">The Good Earth</div>
+            <div class="book-tagline">"Life inside a traveling world."</div>
+            <div class="book-footer">
+              <a href="https://payhip.com/b/MDLlk" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;">Purchase</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── CTA ── -->
+  <section class="cta-band">
+    <div class="container cta-band-inner">
+      <h2>Ready to Enter the <span>Earth Mover Universe?</span></h2>
+      <p>Start with a free book — no commitment, no risk. Just the beginning of humanity's greatest journey.</p>
+      <div class="hero-cta" style="justify-content:center;">
+        <a href="start-here.html" class="btn btn-primary">Start Here &rarr;</a>
+        <a href="books.html" class="btn btn-secondary">See All Books</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Planetary Science Fiction</div>
+          <p class="footer-tagline">The Earth Mover Universe by Robert Pummer. Where worlds become the stage, the stakes, and the spacecraft.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="earth-mover.html">Earth Mover</a></li>
+            <li><a href="start-here.html">Start Here</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:robert@planetarysciencefiction.online">robert@planetarysciencefiction.online</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 Robert Pummer &mdash; planetarysciencefiction.online</div>
+        <div class="footer-contact"><a href="mailto:robert@planetarysciencefiction.online">robert@planetarysciencefiction.online</a></div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- .page-wrap -->
+
+<script src="main.js"></script>
+</body>
+</html>

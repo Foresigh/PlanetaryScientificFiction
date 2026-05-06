@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Here — Free Book | Planetary Science Fiction</title>
+  <meta name="description" content="Enter the Earth Mover Universe in under a minute. Get a free book and discover planetary science fiction — a new genre by Robert Pummer." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .entry-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+    }
+    .entry-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(240,200,67,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(74,158,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .entry-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .entry-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--gold), var(--cyan));
+    }
+
+    .step-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(240,200,67,0.1);
+      border: 1px solid var(--border-gold);
+      border-radius: 2px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 0.1em;
+    }
+    .step-content { flex: 1; }
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .step-text { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+    .faq-a { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
+
+    .orbit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.3);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .orbit-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<div class="page-wrap">
+
+  <!-- ── Navigation ── -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      Planetary Science Fiction
+      <span>Earth Mover Universe</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="earth-mover.html">Earth Mover</a></li>
+      <li><a href="start-here.html">Start Here</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── Entry Hero ── -->
+  <section class="entry-hero grid-overlay">
+    <div class="container" style="padding: 5rem 0; position:relative; z-index:1; width:100%;">
+
+      <div style="text-align:center; margin-bottom:4rem;">
+        <div class="orbit-badge">Transmission Open</div>
+        <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.75rem); text-align:center; margin-bottom:1rem;">
+          Enter the Universe<br>
+          <span class="highlight">in Under a Minute</span>
+        </h1>
+        <p style="color:var(--text-muted); font-size:1.05rem; max-width:520px; margin:0 auto; line-height:1.8;">
+          Get a free book and step into a genre built around the biggest idea
+          science fiction has ever explored — a world that moves.
+        </p>
+      </div>
+
+      <!-- Entry Card -->
+      <div class="entry-card">
+        <div style="text-align:center; margin-bottom:2rem;">
+          <p class="section-label" style="justify-content:center;">Free Book Offer</p>
+          <p style="font-family:var(--font-display); font-size:1.35rem; font-weight:800; color:var(--text); line-height:1.3;">
+            Your First Journey<br><span style="color:var(--gold);">Costs Nothing</span>
+          </p>
+        </div>
+
+        <form id="signup-form" action="https://payhip.com/b/yGq3l" method="get" target="_blank" style="margin-bottom:1.5rem;">
+          <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:1.25rem; line-height:1.65;">
+            Enter your email and receive immediate access to the first book in the
+            Earth Mover Universe. No spam. No commitment. Just the story.
+          </p>
+          <div class="form-group" style="flex-direction:column; align-items:stretch;">
+            <input
+              type="email"
+              class="form-input"
+              placeholder="your@email.com"
+              style="max-width:100%; min-width:0;"
+              required
+            />
+            <button type="submit" class="btn btn-primary" style="justify-content:center; font-size:0.75rem; padding:1rem;">
+              Send Me the Free Book &rarr;
+            </button>
+          </div>
+          <p style="font-size:0.72rem; color:var(--text-dim); margin-top:0.75rem; text-align:center; font-family:var(--font-mono); letter-spacing:0.1em;">
+            No spam. Unsubscribe anytime. Your data stays private.
+          </p>
+        </form>
+
+        <div class="divider" style="margin: 1.5rem 0;"></div>
+
+        <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; line-height:1.7;">
+          Prefer to go straight to the book?
+          <a href="https://payhip.com/b/yGq3l" target="_blank" rel="noopener" style="color:var(--gold);">Get Earth Mover on Payhip &rarr;</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── What You're Entering ── -->
+  <section class="section-pad bg-deep grid-overlay">
+    <div class="container">
+      <div class="section-header text-center">
+        <p class="section-label" style="justify-content:center;">The Concept</p>
+        <h2 class="section-title">What Is <span>Planetary Science Fiction?</span></h2>
+        <p class="section-lead" style="max-width:600px; margin:1rem auto 0;">
+          A genre where the planet itself becomes the protagonist, the vessel,
+          and the stage. This is not about leaving Earth — it is about what happens
+          when you refuse to leave without it.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:3rem;">
+
+        <div class="card">
+          <div style="font-size:2rem; margin-bottom:1rem;">&#127968;</div>
+          <div class="feature-title">World as Spacecraft</div>
+          <p class="feature-text">Earth is not the destination. Earth is the ship. Everything — every person, every history, every tree — travels into deep space together.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size:2rem; margin-bottom:1rem;">&#9883;</div>
+          <div class="feature-title">Civilizational Stakes</div>
+          <p class="feature-text">The conflict isn't between characters — it's between the forces that define what humanity will become when the ground itself is always moving.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size:2rem; margin-bottom:1rem;">&#128269;</div>
+          <div class="feature-title">Grounded Speculation</div>
+          <p class="feature-text">Built on real science, real physics, real human psychology — stretched to a scale that demands new thinking about what we are and where we're going.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── How to Start ── -->
+  <section class="section-pad">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start;">
+
+        <div>
+          <div class="section-header">
+            <p class="section-label">Getting Started</p>
+            <h2 class="section-title">How the <span>Journey Begins</span></h2>
+          </div>
+
+          <ul class="step-list">
+            <li class="step-item">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <div class="step-title">Enter Your Email</div>
+                <p class="step-text">Submit the form above to receive your free first book. You'll have it in moments — no accounts, no checkout process.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <div class="step-title">Read Earth Mover</div>
+                <p class="step-text">Start with Book One. It's the origin — the moment one man triggers the most consequential event in human history.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <div class="step-title">Continue the Series</div>
+                <p class="step-text">Books Two, Three, and Four expand the universe in scope and consequence. The full series is available on Payhip, and the omnibus collects all four.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <div class="step-title">Reach Out</div>
+                <p class="step-text">Questions, thoughts, or reader feedback? Robert is reachable at <a href="mailto:robert@planetarysciencefiction.online">robert@planetarysciencefiction.online</a>.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="section-header">
+            <p class="section-label">Common Questions</p>
+            <h2 class="section-title">Reader <span>FAQ</span></h2>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Do I need to read in order?</div>
+            <p class="faq-a">The series rewards sequential reading — each book builds on the last. But each novel is designed to be an entry point. Start wherever the concept grabs you.</p>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Is this hard science fiction?</div>
+            <p class="faq-a">It is grounded in real physics and science, but the priority is narrative and human consequence — not technical specification. Think Kim Stanley Robinson more than Arthur C. Clarke.</p>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">What formats are available?</div>
+            <p class="faq-a">Digital editions are available through Payhip. The hardcover omnibus collects all four novels in a single physical volume.</p>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">Is the series complete?</div>
+            <p class="faq-a">Yes. All four novels are written and available. The Earth Mover Universe tells a complete story with a beginning, middle, and end.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Concept Summary ── -->
+  <section class="cta-band">
+    <div class="container cta-band-inner">
+      <div class="scan-line" style="margin-bottom:2rem; max-width:480px; margin-left:auto; margin-right:auto;">
+        <span class="scan-line-text">Core Transmission</span>
+      </div>
+      <div class="pull-quote" style="border:none; padding:0; text-align:center; max-width:640px; margin:0 auto 2.5rem;">
+        "Worlds become the stage, the stakes, and the spacecraft."
+      </div>
+      <p style="color:var(--text-muted); font-size:1.05rem; max-width:500px; margin:0 auto 2.5rem;">
+        Begin the Earth Mover Universe. Your free copy is waiting.
+      </p>
+      <a href="#signup-form" class="btn btn-primary" onclick="document.querySelector('.form-input').focus(); return false;">
+        Get Your Free Book &rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Planetary Science Fiction</div>
+          <p class="footer-tagline">The Earth Mover Universe by Robert Pummer. Where worlds become the stage, the stakes, and the spacecraft.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="earth-mover.html">Earth Mover</a></li>
+            <li><a href="start-here.html">Start Here</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:robert@planetarysciencefiction.online">robert@planetarysciencefiction.online</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 Robert Pummer &mdash; planetarysciencefiction.online</div>
+        <div class="footer-contact"><a href="mailto:robert@planetarysciencefiction.online">robert@planetarysciencefiction.online</a></div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- .page-wrap -->
+
+<script src="main.js"></script>
+</body>
+</html>
